@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ email.subject }} • Bring Back Ivy</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="container narrow">
+  <a class="back" href="{{ url_for('dashboard') }}">← Back to dashboard</a>
+  <section class="panel detail">
+    <div class="card-row">
+      <span class="category">{{ email.category }}</span>
+      <span class="status status-{{ email.status|lower|replace(' ', '-') }}">{{ email.status }}</span>
+    </div>
+    <h1>{{ email.subject }}</h1>
+    <p class="recipient"><strong>To:</strong> {{ email.recipient }}{% if email.recipient_email %} • {{ email.recipient_email }}{% endif %}</p>
+    <div class="email-body">{{ email.body }}</div>
+
+    <form method="post" action="{{ url_for('update_status', email_id=email.id) }}">
+      <div class="two">
+        <label>Status
+          <select name="status">
+            {% for value in ['Draft','Approved','Sent','Follow-Up Due','Response Received'] %}
+              <option {% if email.status == value %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label>Follow-up date<input name="follow_up_date" type="date" value="{{ email.follow_up_date }}"></label>
+      </div>
+      <label>Notes<textarea name="notes" rows="4">{{ email.notes }}</textarea></label>
+      <button class="button primary" type="submit">Update Record</button>
+    </form>
+
+    <form method="post" action="{{ url_for('delete_email', email_id=email.id) }}" onsubmit="return confirm('Delete this email record?')">
+      <button class="button danger" type="submit">Delete</button>
+    </form>
+  </section>
+</main>
+</body>
+</html>

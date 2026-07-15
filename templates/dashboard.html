@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bring Back Ivy Command Center</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <p class="eyebrow">JUSTICE • ACCOUNTABILITY • BRING IVY HOME</p>
+    <h1>Bring Back Ivy Command Center</h1>
+    <p class="sub">Media outreach, official correspondence, follow-ups and responses in one place.</p>
+  </div>
+  <a class="button primary" href="{{ url_for('new_email') }}">+ Add Email</a>
+</header>
+
+<main class="container">
+  <section class="stats">
+    <article><span>Total</span><strong>{{ stats.total }}</strong></article>
+    <article><span>Drafts</span><strong>{{ stats.draft }}</strong></article>
+    <article><span>Approved</span><strong>{{ stats.approved }}</strong></article>
+    <article><span>Sent</span><strong>{{ stats.sent }}</strong></article>
+    <article><span>Responses</span><strong>{{ stats.responses }}</strong></article>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <div>
+        <h2>Email Outreach</h2>
+        <p>Every saved ChatGPT email can be posted to <code>/api/emails</code>.</p>
+      </div>
+      <input id="search" type="search" placeholder="Search subject, recipient or category">
+    </div>
+
+    {% if emails %}
+      <div class="email-grid" id="emailGrid">
+      {% for email in emails %}
+        <a class="email-card" href="{{ url_for('email_detail', email_id=email.id) }}"
+           data-search="{{ email.subject }} {{ email.recipient }} {{ email.recipient_email }} {{ email.category }} {{ email.status }}">
+          <div class="card-row">
+            <span class="category">{{ email.category }}</span>
+            <span class="status status-{{ email.status|lower|replace(' ', '-') }}">{{ email.status }}</span>
+          </div>
+          <h3>{{ email.subject }}</h3>
+          <p class="recipient">{{ email.recipient }}{% if email.recipient_email %} • {{ email.recipient_email }}{% endif %}</p>
+          <p class="preview">{{ email.body[:180] }}{% if email.body|length > 180 %}…{% endif %}</p>
+          <div class="meta">
+            <span>{{ email.created_at[:10] }}</span>
+            {% if email.follow_up_date %}<span>Follow up: {{ email.follow_up_date }}</span>{% endif %}
+          </div>
+        </a>
+      {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty">
+        <h3>No emails saved yet.</h3>
+        <p>Add the first media or official outreach email.</p>
+        <a class="button primary" href="{{ url_for('new_email') }}">Create first email</a>
+      </div>
+    {% endif %}
+  </section>
+</main>
+
+<script>
+const search = document.getElementById("search");
+search?.addEventListener("input", () => {
+  const value = search.value.toLowerCase();
+  document.querySelectorAll(".email-card").forEach(card => {
+    card.style.display = card.dataset.search.toLowerCase().includes(value) ? "" : "none";
+  });
+});
+</script>
+</body>
+</html>

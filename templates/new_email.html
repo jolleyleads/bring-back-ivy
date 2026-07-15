@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Add Email • Bring Back Ivy</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="container narrow">
+  <a class="back" href="{{ url_for('dashboard') }}">← Back to dashboard</a>
+  <section class="panel form-panel">
+    <p class="eyebrow">NEW OUTREACH RECORD</p>
+    <h1>Add an Email</h1>
+    <form method="post">
+      <div class="two">
+        <label>Recipient name<input name="recipient" placeholder="WAVY 10 Investigates"></label>
+        <label>Recipient email<input name="recipient_email" type="email" placeholder="news@station.com"></label>
+      </div>
+      <label>Subject<input name="subject" required placeholder="Urgent request to investigate Ivy's removal"></label>
+      <div class="two">
+        <label>Category
+          <select name="category">
+            <option>Media Outreach</option>
+            <option>Animal Control</option>
+            <option>Attorney</option>
+            <option>Elected Official</option>
+            <option>Supporter</option>
+            <option>Public Records</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Status
+          <select name="status">
+            <option>Draft</option>
+            <option>Approved</option>
+            <option>Sent</option>
+            <option>Follow-Up Due</option>
+            <option>Response Received</option>
+          </select>
+        </label>
+      </div>
+      <label>Email body<textarea name="body" required rows="16" placeholder="Paste the complete email here..."></textarea></label>
+      <div class="two">
+        <label>Follow-up date<input name="follow_up_date" type="date"></label>
+        <label>Notes<input name="notes" placeholder="Contact details, response, next action"></label>
+      </div>
+      <button class="button primary" type="submit">Save to Command Center</button>
+    </form>
+  </section>
+</main>
+</body>
+</html>
