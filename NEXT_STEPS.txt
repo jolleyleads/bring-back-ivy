@@ -1,0 +1,10 @@
+﻿Write-Host ''
+Write-Host 'Next steps:' -ForegroundColor Cyan
+Write-Host '1. Create GitHub repo named: JamesLaw-Mobile-Command-Center'
+Write-Host '2. Run: .\setup-local.ps1'
+Write-Host '3. Optional local test: .\start-local.ps1'
+Write-Host '4. Run: .\git-upload.ps1'
+Write-Host '5. Connect GitHub repo to Render as a Web Service'
+Write-Host '6. Add environment variables in Render dashboard'
+Write-Host ''
+Write-Host 'After Render deploys, open your Render URL from your phone.'

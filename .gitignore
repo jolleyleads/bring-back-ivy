@@ -1,0 +1,13 @@
+﻿.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+data/document_index.json
+app.py.backup*
+__patch_*.py
+__ultimate_patch.py

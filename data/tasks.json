@@ -1,0 +1,20 @@
+﻿[
+  {
+    "task": "Verify exact grand jury disposition",
+    "owner": "Matthew",
+    "status": "open",
+    "priority": "high"
+  },
+  {
+    "task": "Add verified delegate and senator contacts",
+    "owner": "Matthew",
+    "status": "open",
+    "priority": "high"
+  },
+  {
+    "task": "Review all generated drafts before sending",
+    "owner": "Matthew",
+    "status": "open",
+    "priority": "high"
+  }
+]

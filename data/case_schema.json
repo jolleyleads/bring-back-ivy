@@ -1,0 +1,35 @@
+﻿{
+  "case_workspace": "James Jolley Case Files",
+  "doe": {
+    "directive": "directives/case_workspace_wrapper.md",
+    "orchestration": "orchestration/orchestrator.md",
+    "execution": "execution/add_case_update.py"
+  },
+  "case_stages": [
+    "New Information",
+    "Needs Review",
+    "Evidence Logged",
+    "Timeline Updated",
+    "Contradictions Checked",
+    "Follow-Up Needed",
+    "Attorney or Prosecutor Packet Ready",
+    "Media or Legislative Use",
+    "Closed or Archived"
+  ],
+  "required_output_fields": [
+    "category",
+    "subcategory",
+    "case_stage",
+    "timeline_impact",
+    "evidence_impact",
+    "witness_impact",
+    "court_prosecutor_detective_impact",
+    "media_legislative_impact",
+    "contradictions_found",
+    "follow_up_actions",
+    "confidence_level",
+    "missing_information",
+    "plain_english_summary",
+    "recommended_next_step"
+  ]
+}

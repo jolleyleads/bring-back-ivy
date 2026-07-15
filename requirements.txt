@@ -1,0 +1,9 @@
+flask
+uvicorn
+asgiref
+openai
+requests
+gunicorn
+
+pypdf
+python-docx
